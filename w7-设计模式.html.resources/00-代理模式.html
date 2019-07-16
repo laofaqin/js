@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        const MyImage = function (parent) {
+            const imgNode = document.createElement('img')
+            parent.appendChild(imgNode)
+
+            // 提供一个方法 ,让外部也能修改 图片的src属性
+            this.setSrc = function(src){
+                imgNode.src = src
+            }
+            
+        }
+        // 直接添加图片 ，如果图片比较大，可能加载的比较慢，导致网页上的img一开始显示不出来
+        let myImage   = new MyImage(document.body)
+
+// 写个代理   提供 预加载功能
+        const ProxyImage = function (myImage) {
+
+            // 创建image对象
+            const img = new Image()
+            img.on
+            // 监听img对象的 onload 方法
+            img.onload = function () { // http 图片加载完毕后才会执行
+                // 模拟网络很慢的情况
+                setTimeout(()=>{
+                    myImage.setSrc(this.src)
+
+                },2000)
+            }
+            
+
+            this.setSrc =function (src) {
+                    // 加载时候先不加载大图，先加载一张小图（浏览器已经下载过的）
+                    myImage.setSrc('loading.gif') // 本地 loading 图片
+                    img.src = src
+            }
+        }
+        // 
+        let proxyImage = new ProxyImage(myImage)
+        proxyImage.setSrc('https://www.baidu.com/img/bd_logo1.png?where=super')
+    </script>
+
+</body>
+
+</html>
