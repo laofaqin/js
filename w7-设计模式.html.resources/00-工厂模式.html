@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+            // 工厂
+        // 文本工厂
+        class Text {
+            constructor(text) {
+                this.text = text
+            }
+            insert(where) {
+                const txt = document.createTextNode(this.text)
+                where.appendChild(txt)
+            }
+        }
+
+        // 链接工厂
+        class Link {
+            constructor(url) {
+                this.url = url
+            }
+            insert(where) {
+                const link = document.createElement('a')
+                link.href = this.url
+                link.appendChild(document.createTextNode(this.url))
+                where.appendChild(link)
+            }
+        }
+
+        //　复杂工厂模式：流程==》 先设计一个抽象类，这个类不能被实例化，
+        // 只能用来派生子类，最后通过对子类的扩展实现工厂方法
+
+        // DOM工厂
+        class DomFactory {
+
+            constructor() {
+
+            }
+
+            // 各流水线
+            insert() {
+
+            }
+
+
+        }
+        // 链接工厂
+        class Link2 extends DomFactory {
+            constructor(url) {
+                this.url = url
+            }
+            insert(where) {
+                const link = document.createElement('a')
+                link.href = this.url
+                link.appendChild(document.createTextNode(this.url))
+                where.appendChild(link)
+            }
+        }
+
+    </script>
+</body>
+</html>
