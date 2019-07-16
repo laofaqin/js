@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 老接口
+        const zhejiangCityOld = function () {
+            return [{
+                    name: 'hangzhou',
+                    id: 11,
+                },
+                {
+                    name: 'jinhua',
+                    id: 12
+                }
+            ]
+        }
+
+        console.log(zhejiangCityOld())
+
+        // 新接口希望是下面形式
+        // {
+        //     hangzhou: 11,
+        //     jinhua:12
+        // }
+
+        // 这时候就可采用适配者模式
+        const adaptor = function (oldCity) {
+            console.log(oldCity)
+            const obj = {}
+            for (let city of oldCity) {
+                obj[city.name] = city.id
+            }
+            return obj
+        }
+
+
+        let oldData = zhejiangCityOld();
+        //把老数据放在适配器中产生新数据
+        console.log(adaptor(oldData))
+
+
+
+    </script>
+
+</body>
+
+</html>
