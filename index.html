@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js-index</title>
+
+</head>
+<style>
+    a{
+        text-decoration: none;
+    }
+    div{
+        width:80%;
+        margin:0 auto;
+    }
+</style>
+<body>
+    <h2>目录</h2>
+    <ul id="list"></ul>
+   <li></li>
+    <script src="jquery.min.js"></script>
+    <script>
+
+        let arr =[
+            'zhengze',
+            'es6',
+            'ajax1',
+            'ajax2',
+            'bbjc',
+            'cookie',
+            'php',
+            'jquery',
+            'jquery2',
+            'jquery3',
+            'w7',
+            'nodejs',
+            'gulp',
+            'git',
+            'sass'
+        ]
+        let arrOn = arr.map(v=>`<li><a href="https://moon-cup.github.io/js/${v}">${v}</a><br></li>`)
+        console.log(arrOn)
+        console.log(arrOn.join(''))
+        $('#list').html(arrOn.join(''))
+    </script>
+</body>
+</html>
